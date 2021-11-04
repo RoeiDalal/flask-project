@@ -1,0 +1,15 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  NAME: flaskproj
+  TAG: $NAME:latest
+  ENV: prod
+
+build_docker_image:
+  stage: build
+  tags:
+    - prod
+  script:
+    - docker build -t $TAG .
