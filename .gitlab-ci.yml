@@ -33,9 +33,9 @@ build_docker_image:
   when: manual
 
 deploy_application:
-  stage: $ENV
+  stage: deploy
   tags:
-    - prod
+    - $ENV
   script:
     - docker-compose up -d
   when: manual
