@@ -4,8 +4,6 @@ stages:
   - deploy
 
 variables:
-  NAME: flaskproj
-  TAG: $NAME:latest
   ENV: test
   IMAGE: registry.gitlab.com/roeidalal/flask-project
 
