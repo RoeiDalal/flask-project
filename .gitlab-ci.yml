@@ -12,4 +12,6 @@ build_docker_image:
   tags:
     - prod
   script:
-    - docker build -t $TAG .
+    - docker login registry.gitlab.com
+    - docker build -t registry.gitlab.com/roeidalal/flask-project .
+    - docker push registry.gitlab.com/roeidalal/flask-project
