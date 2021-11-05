@@ -4,7 +4,7 @@ stages:
   - deploy
 
 variables:
-  ENV: test
+  ENV: prod
   IMAGE: registry.gitlab.com/roeidalal/flask-project
 
 install_docker_engine:
