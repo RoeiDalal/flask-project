@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask
+  name: {{ .Values.flask.name }}
   labels:
-    app: flask
+    app: {{ .Values.flask.name }}
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: flask
+      app: {{ .Values.flask.name }}
   template:
     metadata:
       labels:
-        app: flask
+        app: {{ .Values.flask.name }}
     spec:
       containers:
-      - name: flask
-        image: registry.gitlab.com/roeidalal/flask-project:latest
+      - name: {{ .Values.flask.name }}
+        image: {{ .Values.flask.image }}:{{ .Values.flask.tag }}
         ports:
-        - containerPort: 80
+        - containerPort: {{ .Values.flask.port }}
         envFrom:
           - configMapRef:
               name: flask-configmap

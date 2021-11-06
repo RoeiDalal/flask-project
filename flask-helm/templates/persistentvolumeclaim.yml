@@ -1,15 +1,15 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: mongo-pv-claim
+  name: {{ .Values.volume.claimname }}
   labels:
-    type: amazonEBS
+    type: {{ .Values.volume.type }}
 spec:
   accessModes:
-    - ReadWriteOnce
+    - {{ .Values.volume.accessmodes }}
   resources:
     requests:
       storage: 2Gi
   selector:
     matchLabels:
-      type: "amazonEBS"
+      type: {{ .Values.volume.type }}
