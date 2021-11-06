@@ -23,7 +23,7 @@ install_docker_engine:
   when: manual
 
 
-build_docker_image:
+gitlab_image_push:
   stage: build
   tags:
     - $ENV
@@ -33,7 +33,7 @@ build_docker_image:
     - docker push $IMAGE
   when: manual
 
-build_docker_image:
+aws_image_push:
   stage: buildAWS
   tags:
     - $ENV
