@@ -22,3 +22,14 @@ spec:
         envFrom:
           - configMapRef:
               name: flask-configmap
+        env:
+          - name: USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: secret
+                key: username
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: secret
+                key: password
