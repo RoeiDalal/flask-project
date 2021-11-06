@@ -1,6 +1,7 @@
 stages:
   - prerequisites
   - build
+  - buildAWS
   - deploy
 
 variables:
@@ -30,6 +31,17 @@ build_docker_image:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $IMAGE .
     - docker push $IMAGE
+  when: manual
+
+build_docker_image:
+  stage: buildAWS
+  tags:
+    - $ENV
+  script:
+    - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 393952290553.dkr.ecr.us-east-1.amazonaws.com
+    - docker build -t rdk-images .
+    - docker tag rdk-images:latest 393952290553.dkr.ecr.us-east-1.amazonaws.com/rdk-images:latest
+    - docker push 393952290553.dkr.ecr.us-east-1.amazonaws.com/rdk-images:latest
   when: manual
 
 deploy_application:
