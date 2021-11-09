@@ -3,13 +3,12 @@ kind: Service
 metadata:
   name: {{ .Values.flask.name }}
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: {{ .Values.flask.name }}
   ports:
     - port: {{ .Values.flask.port }}
       targetPort: {{ .Values.flask.port }}
-      nodePort: {{ .Values.flask.nodeport }}
 ---
 apiVersion: v1
 kind: Service
@@ -28,10 +27,9 @@ kind: Service
 metadata:
   name: {{ .Values.express.name }}
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: {{ .Values.express.name }}
   ports:
     - port: {{ .Values.express.port }}
       targetPort: {{ .Values.express.port }}
-      nodePort: {{ .Values.express.nodeport }}
